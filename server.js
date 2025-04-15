@@ -44,9 +44,15 @@ app.put("/update", (req, res) => {
 
 app.delete("/delete",(req, res) => {
    const email = req.query.email;
-   const user = users.filter((i) => i.email !== email)
-   
-   console.log(user)
+   const user = users.filter((i) => i.email === email)
+
+   if(!user){
+    return res.send(`No email found`)
+   }
+
+   const updatedUser = users.filter((i) => i.email !== email) 
+
+   console.log(updatedUser)
 
    res.send("user deleted successfully")
 
